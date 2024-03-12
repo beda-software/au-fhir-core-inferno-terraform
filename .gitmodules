@@ -1,0 +1,3 @@
+[submodule "contrib/au-fhir-core-inferno"]
+	path = contrib/au-fhir-core-inferno
+	url = ../../hl7au/au-fhir-core-inferno.git
