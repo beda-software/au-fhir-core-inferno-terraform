@@ -7,7 +7,7 @@ locals {
 module "inferno" {
   source = "./au_fhir_inferno"
 
-  base_url = "http://au-inferno.beda.software/"
+  base_url = "https://au-inferno.beda.software/"
 }
 
 resource "google_compute_ssl_policy" "ssl_policy" {
