@@ -1,0 +1,11 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: inferno-frontend-config
+  namespace: ${namespace}
+spec:
+  sslPolicy:
+    gke-ingress-ssl-policy
+  redirectToHttps:
+    enabled: true
+    responseCodeName: PERMANENT_REDIRECT

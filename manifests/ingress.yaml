@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: inferno-ingress
+  namespace: ${namespace}
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: ${public_ip_name}
+    networking.gke.io/managed-certificates: inferno-certificate
+    networking.gke.io/v1beta1.FrontendConfig: inferno-frontend-config
+spec:
+  rules:
+  - host: au-inferno.beda.software
+    http:
+      paths:
+      - path: /validator/*
+        backend:
+          service:
+            name: inferno-fhir-validator
+            port:
+              number: 80
+        pathType: ImplementationSpecific
+      - path: /validatorapi/*
+        backend:
+          service:
+            name: inferno-validator
+            port:
+              number: 4567
+        pathType: ImplementationSpecific
+      - path: /*
+        backend:
+          service:
+            name: inferno
+            port:
+              number: 4567
+        pathType: ImplementationSpecific

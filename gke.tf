@@ -33,3 +33,11 @@ module "gke" {
   network_tags                    = [local.cluster_type]
   deletion_protection             = false
 }
+
+resource "google_compute_global_address" "ingress_ip" {
+  project      = var.project_id
+  name         = "inferno-ip"
+  address_type = "EXTERNAL"
+}
+
+
